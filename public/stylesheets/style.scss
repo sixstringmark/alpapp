@@ -1,0 +1,31 @@
+$bgmain: #fcc;
+@import "hah";
+@import "colors";
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.custfld {
+  background-color: $bgmain;
+}
+ick.div {
+  color: red;
+}
+div.sub {
+  margin-left: 16px;
+}
+div.vars {
+  .dtls {
+    table {
+      tr.disabled {
+        opacity: .3;
+      }
+    }
+  }
+}

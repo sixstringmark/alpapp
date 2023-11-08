@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productlist retailer="sportsmansfinest.com">
+    <product>
+        <type>ammunition</type> text
+        <title>
+            <![CDATA[Boy, oh boy]]>
+        </title>
+        <manufacturer>
+            <![CDATA[Hornady]]>
+        </manufacturer>
+        <caliber>
+            <![CDATA[38 Special]]>
+        </caliber>
+        <url>
+            <![CDATA[http://yoursiteURL.com/products/item12345.html]]>
+        </url>
+        <upc>054041163255</upc> <-upc
+        <grains>
+            <![CDATA[110]]>
+        </grains>
+        <price>
+            <![CDATA[21.99]]> <-price
+        </price>
+        <rebate>
+            <![CDATA[3.00]]> ?
+        </rebate>
+        <numrounds>
+            <![CDATA[50]]> ?
+        </numrounds>
+        <shot_size>
+            <![CDATA[]]> ?
+        </shot_size>
+        <shell_length>
+            <![CDATA[]]> ?
+        </shell_length>
+        <purchaselimit>10</purchaselimit> ?
+        <condition>new</condition> ?
+        <casing>brass</casing> ?
+    </product>
+</productlist>

@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Alpine App</a>
+</nav>
+
+<pre>
+    {{{data.meta.pagination.total}}}
+</pre>
+{{#each data.data}}
+<div>
+    ouch {{name}} {{price}}
+    <div>
+        {{{description}}}
+    </div>
+</div>
+{{/each}}
+<div class="posts">
+    <div class="row justify-content-center">
+        <div class="col-lg-7" style="margin-top: 50px;">
+            <div class="card">
+
+                <img src="{{post.image}}"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.author}}</h5>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">This is supposed to be a comment</li>
+                        <li class="list-group-item">This is supposed to be a comment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

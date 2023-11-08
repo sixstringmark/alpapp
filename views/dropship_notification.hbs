@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <style>
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 4px 1em;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
+            text-align: left;
+            background-color: #c8e4da;
+        }
+
+        div.order,
+        div.errors {
+            margin-top: 1.5em;
+            border-top: 1px solid #ddd;
+            padding: 1em 0;
+        }
+
+        div.order table {
+            margin-top: 1em;
+        }
+
+        div.address {
+            margin: 0.5em 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Dropship Processing for BigCommerce Order {{data.order_id}}</h3>
+    <div class="info">Processed {{data.date_time}}</div>
+
+    {{#if messages }}
+    <div class="messages">
+        {{#each messages as |msg|}}
+        <div class="msg">
+            {{msg}}
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+
+    {{#if errors }}
+    <div class="errors">
+        {{#each errors as |msg|}}
+        <div class="msg">
+            {{msg}}
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    <div class="orders">
+
+        {{#each data.orders}}
+
+        <div class="order">
+
+            <div class="header_info"><b>Supplier:</b> {{supplier}}</div>
+            <div class="header_info"><b>Shipment Type:</b> {{type}}</div>
+            {{#if address}}
+            <div class="header_info"><b>Ship To:</b>
+                <div class="address">
+                    {{address.first_name}} {{address.last_name}}<br>
+                    {{address.street_1}}<br>
+                    {{#if address.street_2}}
+                        {{address.street_2}}<br>
+                    {{/if}}
+                    {{address.city}}, {{address.state}} {{address.zip}}
+                </div>
+            </div>
+            {{/if}}
+            <div class="header_info"><b>PO Number:</b> {{po_number}}</div>
+            <div class="header_info"><b>Supplier Conf/Order No:</b> {{supplier_id}}</div>
+            <div class="header_info"><b>Supplier Reference:</b> {{supplier_ref}}</div>
+            {{#if order_messages }} 
+            <div class="order_messages">
+                {{#each order_messages as |msg|}}
+                <div class="msg">
+                    {{msg}}
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+
+            <table>
+                <tr class="order_item_hdr">
+                    <th>Quantity</th>
+                    <th>Product Description</th>
+                    <th>Sku/Part #</th>
+                    <th>UPC</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                </tr>
+                {{#each order_items}}
+                <tr>
+                    <td>{{qty_ack}} / {{qty_req}}</td>
+                    <td>{{name}}</td>
+                    <td>{{sku}}</td>
+                    <td>{{upc}}</td>
+                    <td style="text-align: right;">{{cost}}</td>
+                    <td>{{outcome}}</td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td style="text-align: right;" colspan="4">Product Subtotal</td>
+                    <td style="text-align: right;">{{subtotal}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;" colspan="4">Shipping</td>
+                    <td style="text-align: right;">{{shipping}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;" colspan="4">Order Total</td>
+                    <td style="text-align: right;">{{total}}</td>
+                    <td>{{order_outcome}}</td>
+                </tr>
+            </table>
+        </div>
+
+        {{/each}}
+
+    </div>
+
+    <div class="errors">
+        <div class="hdr">Errors</div>
+        <ul>
+            {{#each errors}}
+            <li class="dtl">{{message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+</body>
+
+</html>

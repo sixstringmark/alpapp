@@ -1,0 +1,35 @@
+.golly {
+  width: 30%;
+}
+
+.hdr {
+  color: red;
+}
+
+/*# sourceMappingURL=colors.css.map */
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.custfld {
+  background-color: #fcc;
+}
+
+ick.div {
+  color: red;
+}
+
+div.sub {
+  margin-left: 16px;
+}
+
+div.vars .dtls table tr.disabled {
+  opacity: 0.3;
+}
+
+/*# sourceMappingURL=style.css.map */

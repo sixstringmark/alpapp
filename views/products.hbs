@@ -1,0 +1,241 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Alpine Supplier Sync</a>
+</nav>
+
+{{!
+<div>
+    <h4>Find</h4>
+    <form action="products">
+        <input type="text" name="what">
+        <input type="submit" name="go" value="search">
+    </form>
+</div>
+
+<div>
+    <h4>Add</h4>
+    <form action="products">
+        <input type="text" name="p_name">
+        <input type="text" name="p_price">
+        <textarea name="p_desc"></textarea>
+        <input type="submit" name="go" value="addp">
+    </form>
+</div>
+
+<div>
+    <h4>Updatex</h4>
+    <form action="products">
+        <input type="text" name="p_id">
+        <input type="text" name="p_price">
+        <input type="submit" name="go" value="updt">
+    </form>
+</div>
+
+<div>
+    <h4>Delete</h4>
+    <form action="products">
+        <input type="text" name="p_id">
+        <input type="submit" name="go" value="dltp">
+    </form>
+</div>
+}}
+
+<div>{{{post.author}}}</div>
+
+<div>
+    <h4>Options</h4>
+    <form action="products" name="sync_options" id="sync_options">
+        <div>
+            <label for="ix_start">Starting index (first row if omitted)</label>
+            <input id = "ix_start" type="text" name="p_ix_start">
+        </div>
+        <div>
+            <label for="ix_count">Count (all if omitted)</label>
+            <input id = "ix_count" type="text" name="p_ix_count">
+        </div>
+        <div>
+            <label>Supplier Selection</label>
+            <hr>
+            <div>
+                <input id = "sku_scrub" type="checkbox" name="p_sku_scrub">
+                <label for="sku_scrub">Hide Lower Priority SKUs for UPCs</label>
+                <div>
+                    <label for="sku_scrub_export">Product Export File for Category Recovery</label>
+                    <input id = "sku_scrub_export" type="text" name="p_sku_scrub_export" value="">
+                </div>
+            </div>
+            <hr>
+            <div>
+                <input id = "rsr_import" type="checkbox" name="p_import_rsr">
+                <label for="rsr_import">RSR</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "kinseys_import" type="checkbox" name="p_import_kinseys">
+                <label for="kinseys_import">Kinsey's</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "lipseys_import" type="checkbox" name="p_import_lipseys">
+                <label for="lipseys_import">Lipsey's</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "sportsouth_import" type="checkbox" name="p_import_sportsouth">
+                <label for="sportsouth_import">Sport South</label>
+                <div class="sub">
+                <label for="last_date">Last update day - 3 days back if omitted (yyyy/mm/dd)</label>
+                <input id = "last_date" type="text" name="p_last_date" value="">
+                </div>
+            </div>
+            
+            <hr>
+            <div>
+                <input id = "adjust_sort_order" type="checkbox" name="p_adjust_sort_order">
+                <label for="adjust_sort_order">Adjust product sort_order based on in-stock/out-of-stock</label>
+            </div>
+
+            <hr>
+            <div>
+                <input id = "fix9" type="checkbox" name="p_fix9">
+                <label for="fix9">Fix 9 - Hide Supplier Archery Products</label>
+            </div>
+
+            <hr>
+            <div>
+                <input id = "fix1" type="checkbox" name="p_fix1">
+                <label for="fix1">Fix 1</label>
+            </div>
+
+            <hr>
+            <div>
+                <input id = "fix1" type="checkbox" name="p_purge_deleted">
+                <label for="fix1">Fix 1</label>
+            </div>
+
+            <hr>
+            <div>
+                <input id = "fix2" type="checkbox" name="p_fix2">
+                <label for="fix2">Fix 2 - Create FFL / Yes custom field for guns</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "fix3" type="checkbox" name="p_fix3">
+                <label for="fix3">Fix 3 - Assign Products to Warehouse Category</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "fix4" type="checkbox" name="p_fix4">
+                <label for="fix4">Fix 4 - Hide Products with No Images</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "fix5" type="checkbox" name="p_fix5">
+                <label for="fix5">Fix 5 - Set Low Stock Value to 3</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "fix6" type="checkbox" name="p_fix6">
+                <label for="fix6">Fix 6 - Set _warehouse_ custom field as needed</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "fix7" type="checkbox" name="p_fix7">
+                <label for="fix7">Fix 7 - Add ShipperHQ Product Metafields</label>
+            </div>
+            <hr>
+            <div>
+                <input id = "in_house" type="checkbox" name="p_in_house">
+                <label for="in_house">Import In-House Product</label>
+                <div>
+                    <label for="prod_exp_file">Product Export File</label>
+                    <input id = "prod_exp_file" type="text" name="p_prod_exp_file" value="../app_data/uc_export.csv">
+                </div>
+                <div>
+                    <label for="attr_exp_file">Attribute Export File</label>
+                    <input id = "attr_exp_file" type="text" name="p_attr_exp_file" value="../app_data/export_attributes.csv">
+                </div>
+            </div>
+            <hr>
+            <div>
+                <input id = "customer_conversion" type="checkbox" name="p_customer_conversion">
+                <label for="customer_conversion">Convert UC Customer Export to BC Bulk-Edit Import</label>
+                <div>
+                    <label for="uc_export_file">Unified Commerce Export File (input)</label>
+                    <input id = "uc_export_file" type="text" name="p_uc_export_file" value="../app_data/customer_20220207_213829.csv">
+                </div>
+                <div>
+                    <label for="bc_import_file">BigCommerce Bulk-Edit Import File (output)</label>
+                    <input id = "bc_import_file" type="text" name="p_bc_import_file" value="../app_data/mc1.csv">
+                </div>
+            </div>
+            <hr>
+        </div>
+        <input type="hidden" name="go" value="p_sync"/>
+        <button type="submit">Start Sync</button>
+    </form>
+    <div>
+        <form action="products" name="sync_cancel" id="sync_cancel">
+            <input type="hidden" name="go" value="p_sync_cancel"/>
+            <button type="submit">Cancel Sync</button>
+        </form>
+    </div>
+    <div>
+        <form action="products" name="hookup" id="hookup">
+            <input type="hidden" name="go" value="hookup"/>
+            <button type="submit">Install Webhooks</button>
+        </form>
+    </div>
+</div>
+
+
+
+{{#each data.data}}
+<div class="prd">
+    <hr>
+    <div class="base">
+        <div class="lbl"><span class="id">{{id}}</span>-<span class="nm">{{name}}</span> <span class="price">${{price}}</span></div>
+        <div class="dsc">
+            {{{description}}}
+        </div>
+    </div>
+    <div class="catg">
+        <div class="hdr">Categories</div>
+        <div class="dtls">
+            {{#each category_details}}
+                <div class="nm">{{name}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="vars">
+        <div class="hdr">Variants</div>
+        <div class="dtls">
+        <table>
+            {{#each variants}}
+                {{#if @first}}
+                    <tr>
+                    {{#each option_values}}
+                        <td><span class="lbl">{{option_display_name}}</td>
+                    {{/each}}
+                    <td>Price</td>
+                    </tr>
+                {{/if}}
+                <tr {{#if purchasing_disabled}} class="disabled"{{/if}}>
+                {{#each option_values}}
+                    <td><span class="lbl">{{label}}:</td>
+                {{/each}}
+                <td class="price">{{calculated_price}}</td>
+                </tr>
+            {{/each}}
+        </table>
+        </div>
+    </div>
+    <div class="custfld">
+        <div class="hdr">Custom Fields</div>
+        <div class="dtls">
+            {{#each custom_fields}}
+                <div class="dtl"><div class="lbl">{{name}}</div><div class="val">{{value}}</div></div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{/each}}
