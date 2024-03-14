@@ -107,11 +107,13 @@ module.exports = {
      * Global access to local file system to get credentials for the app and for each installed storee
     **/
     get_app_data: function () {
+      require('dotenv').config();
+      console.log("bully bully"+process.env.PORT);
         const fs = require("fs");
 
         let rawdata = fs.readFileSync(data_path);
         //console.log("raw");console.timeLog(rawdata);
-        let app_db = JSON.parse(rawdata);
+        let app_db = {"aaa":"bbb"}; //JSON.parse(rawdata);
         //console.log("returning app data",app_db);
         return app_db;
     },

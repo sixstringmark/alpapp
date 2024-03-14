@@ -131,6 +131,7 @@ function ick1(hash, res1) {
     res.on("end", function (chunk) {
       var body = Buffer.concat(chunks);
       try {
+        console.log("ick");
         var jj = JSON.parse(body);
         //console.log(jj);
         ff = jj;

@@ -1,3 +1,18 @@
+const mysql = require('mysql');
+
+const dbConn = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'Fun4All***',
+  database : 'mcmarkio'
+});
+
+dbConn.connect(function(err) {
+  if (err) throw err;
+  console.log("Database Connected!");
+});
+module.exports = dbConn;
+
 var express = require("express");
 var router = express.Router();
 var https = require("follow-redirects").https;

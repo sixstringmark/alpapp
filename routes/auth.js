@@ -4,11 +4,14 @@ const express = require("express"),
 
 const fs = require("fs");
 
+require('dotenv').config();
+
 const ii = require("../util/ick");
 
 let dd = ii.get_app_data();
 
 let rawdata = fs.readFileSync('../app_data/output.json');
+console.debug(rawdata);
 let app_db = JSON.parse(rawdata);
 
 /**
@@ -18,9 +21,9 @@ let app_db = JSON.parse(rawdata);
  */
 const bigCommerce = new BigCommerce({
   logLevel: "info",
-  clientId: app_db.app_client, //"bhbr39ez9774t7hoe75utu1xybbkyv2" /*process.env.client_id*/, // set in  condesandbox server control panel
-  secret: app_db.app_secret, //"b0de4c004fee96358785b87a35bc725cc09b19350c5a270eb387f9479aedbb0b" /*process.env.client_secret*/, // set in condesandbox server  control panel
-  callback: "https://mcmarkio-bc.ngrok.io/auth" /*process.env.callback*/, // set in condesandbox server control pannel
+  clientId: process.env.app_client, //"bhbr39ez9774t7hoe75utu1xybbkyv2" /*process.env.client_id*/, // set in  condesandbox server control panel
+  secret: process.env.app_secret, //"b0de4c004fee96358785b87a35bc725cc09b19350c5a270eb387f9479aedbb0b" /*process.env.client_secret*/, // set in condesandbox server  control panel
+  callback: process.env.callback, // "https://mcmarkio-bc.ngrok.io/auth" /*process.env.callback*/, // set in condesandbox server control pannel
   responseType: "json",
   headers: { "Accept-Encoding": "*" },
   apiVersion: "v3"

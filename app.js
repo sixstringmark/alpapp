@@ -7,6 +7,8 @@
  * Note: not intended for production use.
  **/
 
+
+
 const express = require("express");
 const session = require("express-session");
 const exphbs = require('express-handlebars');
@@ -21,9 +23,12 @@ const ammofeedRouter = require("./routes/ammofeed");
 const hooks = require("./routes/hooks");
 const productsRouter = require("./routes/products");
 
+require('dotenv').config();
+
 // App Routes ============================================
 const auth = require("./routes/auth");
 const load = require("./routes/load");
+const remove_user = require("./routes/remove_user");
 const uninstall = require("./routes/uninstall");
 // ========================================================
 
@@ -46,6 +51,7 @@ app.use("/", indexRouter);
 // App Routes ============================================+
 app.use("/ammofeed", ammofeedRouter);
 app.use("/users", usersRouter);
+app.use("/remove_user", remove_user);
 app.use("/hooks", hooks);
 app.use("/products", productsRouter);
 app.use("/auth", auth);
