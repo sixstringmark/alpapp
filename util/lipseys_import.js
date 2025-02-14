@@ -1,4 +1,5 @@
 /**
+ * Golly, Gee
  * This module handles specific processing for importing / syncing Sportsman's Finest BigCommerce catalog
  * with Lipsey's.
  * 
