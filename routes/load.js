@@ -9,15 +9,27 @@ const session = require("express-session");
 const router = express.Router();
 const BigCommerce = require("node-bigcommerce");
 
+require('dotenv').config();
+
 const ii = require("../util/ick");
 
 const dd = ii.get_app_data();
 
+// const bigCommerce = new BigCommerce({
+//   clientId: dd.app_client, //"bhbr39ez9774t7hoe75utu1xybbkyv2" /*process.env.client_id*/, // set in  condesandbox server control panel
+//   secret: dd.app_secret, //"b0de4c004fee96358785b87a35bc725cc09b19350c5a270eb387f9479aedbb0b" /*process.env.client_secret*/, // set in condesandbox server  control panel
+//   responseType: "json",
+//   apiVersion: "v2"
+// });
+
 const bigCommerce = new BigCommerce({
-  clientId: dd.app_client, //"bhbr39ez9774t7hoe75utu1xybbkyv2" /*process.env.client_id*/, // set in  condesandbox server control panel
-  secret: dd.app_secret, //"b0de4c004fee96358785b87a35bc725cc09b19350c5a270eb387f9479aedbb0b" /*process.env.client_secret*/, // set in condesandbox server  control panel
+  logLevel: "info",
+  clientId: process.env.app_client, //"bhbr39ez9774t7hoe75utu1xybbkyv2" /*process.env.client_id*/, // set in  condesandbox server control panel
+  secret: process.env.app_secret, //"b0de4c004fee96358785b87a35bc725cc09b19350c5a270eb387f9479aedbb0b" /*process.env.client_secret*/, // set in condesandbox server  control panel
+  callback: process.env.callback, // "https://mcmarkio-bc.ngrok.io/auth" /*process.env.callback*/, // set in condesandbox server control pannel
   responseType: "json",
-  apiVersion: "v2"
+  headers: { "Accept-Encoding": "*" },
+  apiVersion: "v3"
 });
 
 router.get("/", (req, res, next) => {

@@ -1,23 +1,20 @@
 /**
- * /uninstall
+ * /remove_user
  *
- * called when the store owner clicks to uninstall the app.
+ * Called when a single-click user should be removed
  */
 
-var ii = require("../util/ick");
+const express = require("express");
+const session = require("express-session");
+const router = express.Router();
+const BigCommerce = require("node-bigcommerce");
 
 require('dotenv').config();
 
-//var dd = ii.get_app_data();
+const ii = require("../util/ick");
 
-const express = require("express"),
-  router = express.Router(),
-  BigCommerce = require("node-bigcommerce");
+const dd = ii.get_app_data();
 
-// const bigCommerce = new BigCommerce({
-//   secret: dd.app_secret, // set in server control panel
-//   responseType: "json"
-// });
 
 const bigCommerce = new BigCommerce({
   logLevel: "info",
@@ -30,20 +27,25 @@ const bigCommerce = new BigCommerce({
 });
 
 router.get("/", (req, res, next) => {
-  console.log('uninstall.js');
+  console.log('load.js');
   try {
+    // verify request came from BigCommerce
     const data = bigCommerce.verify(req.query["signed_payload"]);
-
-    var dd = ii.get_app_data();
     if (typeof data.user !== "undefined") {
-      // ... code to remove user / store from app db ...
-      delete dd.store_hash[data.store_hash]; // remove store hash from saved tokens
-      ii.save_app_data(dd); // store updated config
+      //console.log('load data'); console.log(data.store_hash);
+      console.log( "remove user", data);
+      //req.session.mc_hash = data.store_hash;
+      //req.session.baby = 'boo';
+      //res.render('load', {
+      //  post: {
+      //    author: 'Alpine Supplier Feeds Configurator',
+      //    image: 'https://picsum.photos/500/500',
+      //    comments: []
+      //  }
+      //});
     }
-  } catch (err) {
-    //next(err);
-    console.log(err);
-  }
+    res.send("ok");
+  } catch (err) { }
 });
 
 module.exports = router;
